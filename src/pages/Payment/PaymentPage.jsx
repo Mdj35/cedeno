@@ -24,7 +24,7 @@ function Payment() {
 }, {
     headers: {
         'accept': 'application/json',
-        'authorization': `Basic ${btoa(process.env.NEXT_PUBLIC_PAYMONGO_SECRET)}`, // Use your environment variable
+        'authorization': `Basic ${btoa(process.env.PAYMONGO_SECRET)}`, // Use your environment variable
         'content-type': 'application/json'
     }
 });
