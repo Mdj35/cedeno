@@ -13,21 +13,21 @@ function Payment() {
             const amountInCentavos = Math.round(totalPrice * 100); // Convert to centavos
 
             // PayMongo payment link creation API call
-            const response = await axios.post('https://api.paymongo.com/v1/links', {
-                data: {
-                    attributes: {
-                        amount: amountInCentavos,
-                        description: "Payment for Order",
-                        remarks: "none"
-                    }
-                }
-            }, {
-                headers: {
-                    'accept': 'application/json',
-                    'authorization': `Basic ${btoa('sk_test_qktYNDx5UjE2gznY1es6vnba')}`, // Encoding secret key
-                    'content-type': 'application/json'
-                }
-            });
+          const response = await axios.post('https://api.paymongo.com/v1/links', {
+    data: {
+        attributes: {
+            amount: amountInCentavos,
+            description: "Payment for Order",
+            remarks: "none"
+        }
+    }
+}, {
+    headers: {
+        'accept': 'application/json',
+        'authorization': `Basic ${btoa(process.env.NEXT_PUBLIC_PAYMONGO_SECRET)}`, // Use your environment variable
+        'content-type': 'application/json'
+    }
+});
 
             // Handling the response
             console.log('Payment link created:', response.data);
